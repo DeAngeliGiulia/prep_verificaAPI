@@ -1,0 +1,12 @@
+<div class="container mt-4">
+    <h2>Product Details</h2>
+    <button class="btn btn-secondary" [routerLink]="['/cerca']">Back to Search</button>
+    <div *ngIf="productDetails">
+      <h3>{{ productDetails.product_name }}</h3>
+      <div *ngIf="productDetails.image_url">
+        <img [src]="productDetails.image_url" alt="Product Image" class="img-fluid">
+      </div>
+      <pre>{{ productDetails | json }}</pre>
+    </div>
+  </div>
+  

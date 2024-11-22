@@ -1,0 +1,21 @@
+<div class="container mt-4">
+    <h2>Cerca cibo</h2>
+    <div class="input-group mb-3">
+      <input type="text" [(ngModel)]="searchTerm" class="form-control" placeholder="Inserisci il nome di un cibo" />
+      <button class="btn btn-primary" (click)="onSearch()">Cerca</button>
+    </div>
+    <div *ngIf="products.length">
+      <div class="row">
+        <div class="col-md-4" *ngFor="let product of products">
+          <div class="card">
+            <img *ngIf="product.image_url" [src]="product.image_url" class="card-img-top" alt="Image">
+            <div class="card-body">
+              <h5 class="card-title">{{ product.product_name }}</h5>
+              <a [routerLink]="['/cibo', product.code]" class="btn btn-info">Visualizza dettagli</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
