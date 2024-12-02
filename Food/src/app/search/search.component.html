@@ -12,7 +12,7 @@
       <div class="card mb-3">
         <div class="card-body">
           <h5 class="card-title" (click)="onProductClick(product.code)">
-            <a href="#" class="text-decoration-none">{{ product.product_name || 'Nome non disponibile' }}</a>
+            <a class="text-decoration-none">{{ product.product_name || 'Nome non disponibile' }}</a>
           </h5>
           <p class="card-text">
             <img [src]="product.image_url" alt="Immagine prodotto" class="img-fluid" width="100">

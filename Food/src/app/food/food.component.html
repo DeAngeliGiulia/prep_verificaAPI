@@ -2,8 +2,8 @@
   <h1 class="text-center">Dettagli del Prodotto</h1>
 
   <div *ngIf="productDetails; else loading">
-    <div class="card">
-      <img [src]="productDetails.image_url" class="card-img-top" alt="Immagine prodotto">
+    <div class="card" style="align-items:center;">
+      <img [src]="productDetails.image_url" class="card-img-top" alt="Immagine prodotto" style="max-width:fit-content; max-height: 500px;">
       <div class="card-body">
         <h5 class="card-title">{{ productDetails.product_name || 'Nome non disponibile' }}</h5>
 
@@ -20,7 +20,6 @@
           <strong>Categorie:</strong> {{ productDetails.categories || 'Non specificato' }}
         </div>
 
-        <!-- Altri dettagli opzionali (Ingredienti, etc.) -->
         <div *ngIf="productDetails.ingredients_text">
           <strong>Ingredienti:</strong> {{ productDetails.ingredients_text }}
         </div>
@@ -28,7 +27,6 @@
     </div>
   </div>
 
-  <!-- Template di caricamento -->
   <ng-template #loading>
     <p class="text-center">Caricamento in corso...</p>
   </ng-template>

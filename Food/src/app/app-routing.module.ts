@@ -4,8 +4,7 @@ import { SearchComponent } from './search/search.component';
 import { FoodComponent } from './food/food.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/search', pathMatch: 'full' },
-  { path: 'search', component: SearchComponent },
+  { path: '', component: SearchComponent },
   { path: 'item/:id', component: FoodComponent }
 ];
 

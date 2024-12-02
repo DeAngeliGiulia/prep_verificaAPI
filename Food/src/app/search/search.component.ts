@@ -27,7 +27,6 @@ export class SearchComponent implements OnInit {
       );
     }
   }
-
   onProductClick(id: string): void {
     this.router.navigate(['/item', id]);
   }
