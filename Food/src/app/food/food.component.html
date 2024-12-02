@@ -1,12 +1,35 @@
 <div class="container mt-4">
-    <h2>Product Details</h2>
-    <button class="btn btn-secondary" [routerLink]="['/cerca']">Back to Search</button>
-    <div *ngIf="productDetails">
-      <h3>{{ productDetails.product_name }}</h3>
-      <div *ngIf="productDetails.image_url">
-        <img [src]="productDetails.image_url" alt="Product Image" class="img-fluid">
+  <h1 class="text-center">Dettagli del Prodotto</h1>
+
+  <div *ngIf="productDetails; else loading">
+    <div class="card">
+      <img [src]="productDetails.image_url" class="card-img-top" alt="Immagine prodotto">
+      <div class="card-body">
+        <h5 class="card-title">{{ productDetails.product_name || 'Nome non disponibile' }}</h5>
+
+        <div class="mb-3">
+          <strong>Quantità:</strong> {{ productDetails.quantity || 'Non specificata' }}
+        </div>
+        <div class="mb-3">
+          <strong>Packaging:</strong> {{ productDetails.packaging || 'Non specificato' }}
+        </div>
+        <div class="mb-3">
+          <strong>Marca:</strong> {{ productDetails.brands || 'Non disponibile' }}
+        </div>
+        <div class="mb-3">
+          <strong>Categorie:</strong> {{ productDetails.categories || 'Non specificato' }}
+        </div>
+
+        <!-- Altri dettagli opzionali (Ingredienti, etc.) -->
+        <div *ngIf="productDetails.ingredients_text">
+          <strong>Ingredienti:</strong> {{ productDetails.ingredients_text }}
+        </div>
       </div>
-      <pre>{{ productDetails | json }}</pre>
     </div>
   </div>
-  
+
+  <!-- Template di caricamento -->
+  <ng-template #loading>
+    <p class="text-center">Caricamento in corso...</p>
+  </ng-template>
+</div>

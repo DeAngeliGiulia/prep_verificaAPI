@@ -6,19 +6,18 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class FoodService {
-  private apiUrl = 'https://world.openfoodfacts.org/cgi/search.pl';
+
+  private baseUrl = 'https://world.openfoodfacts.org';
 
   constructor(private http: HttpClient) { }
 
-  // Metodo per cercare il cibo
-  searchFood(searchTerm: string): Observable<any> {
-    const url = `${this.apiUrl}?search_terms=${searchTerm}&page_size=10&json=true`;
+  searchProducts(query: string, pageSize: number = 10): Observable<any> {
+    const url = `${this.baseUrl}/cgi/search.pl?search_terms=${query}&page_size=${pageSize}&json=true`;
     return this.http.get<any>(url);
   }
 
-  // Metodo per ottenere i dettagli di un prodotto per ID
-  getFoodDetails(id: string): Observable<any> {
-    const url = `https://world.openfoodfacts.org/api/v0/product/${id}.json`;
+  getProductDetails(id: string): Observable<any> {
+    const url = `${this.baseUrl}/api/v0/product/${id}.json`;
     return this.http.get<any>(url);
   }
 }

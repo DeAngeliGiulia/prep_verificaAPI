@@ -1,21 +1,24 @@
 <div class="container mt-4">
-    <h2>Cerca cibo</h2>
-    <div class="input-group mb-3">
-      <input type="text" [(ngModel)]="searchTerm" class="form-control" placeholder="Inserisci il nome di un cibo" />
-      <button class="btn btn-primary" (click)="onSearch()">Cerca</button>
+  <h1 class="text-center">Cerca i tuoi prodotti alimentari</h1>
+
+  <div class="row">
+    <div class="col-12">
+      <input [(ngModel)]="searchQuery" class="form-control" placeholder="Cerca per nome (es. pizza)" (input)="onSearch()">
     </div>
-    <div *ngIf="products.length">
-      <div class="row">
-        <div class="col-md-4" *ngFor="let product of products">
-          <div class="card">
-            <img *ngIf="product.image_url" [src]="product.image_url" class="card-img-top" alt="Image">
-            <div class="card-body">
-              <h5 class="card-title">{{ product.product_name }}</h5>
-              <a [routerLink]="['/cibo', product.code]" class="btn btn-info">Visualizza dettagli</a>
-            </div>
-          </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-12" *ngFor="let product of products">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title" (click)="onProductClick(product.code)">
+            <a href="#" class="text-decoration-none">{{ product.product_name || 'Nome non disponibile' }}</a>
+          </h5>
+          <p class="card-text">
+            <img [src]="product.image_url" alt="Immagine prodotto" class="img-fluid" width="100">
+          </p>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

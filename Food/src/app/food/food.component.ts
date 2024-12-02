@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FoodService } from '../food.service';
 
 @Component({
@@ -9,14 +9,27 @@ import { FoodService } from '../food.service';
 })
 export class FoodComponent implements OnInit {
   productId: string = '';
-  productDetails: any = {};
+  productDetails: any;
 
-  constructor(private route: ActivatedRoute, private foodService: FoodService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private foodService: FoodService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.productId = this.route.snapshot.paramMap.get('id')!;
-    this.foodService.getFoodDetails(this.productId).subscribe((data: any) => {
-      this.productDetails = data.product;
+    this.route.paramMap.subscribe(params => {
+      this.productId = params.get('id')!;
+      this.foodService.getProductDetails(this.productId).subscribe(
+        (data) => {
+          this.productDetails = data.product;
+        },
+        (error) => {
+          console.error('Errore nel recupero dei dettagli:', error);
+        }
+      );
     });
   }
+
+
 }
